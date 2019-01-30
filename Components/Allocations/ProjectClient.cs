@@ -22,13 +22,13 @@ namespace Allocations
             _accessTokenFn = accessTokenFn;
         }
 
+
         public async Task<ProjectInfo> Get(long projectId) =>
             await new GetProjectCommand(DoGet, DoGetFromCache, projectId).ExecuteAsync();
 
         private async Task<ProjectInfo> DoGet(long projectId)
         {
             var token = await _accessTokenFn();
-
 
             _client.DefaultRequestHeaders.Accept.Clear();
             _client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
@@ -49,7 +49,7 @@ namespace Allocations
         private Task<ProjectInfo> DoGetFromCache(long projectId)
         {
             _logger.LogInformation($"Retrieving from cache projectId: {projectId}");
-            return Task.FromResult(_projectCache[projectId]); 
+            return Task.FromResult(_projectCache[projectId]);
         }
     }
 }
