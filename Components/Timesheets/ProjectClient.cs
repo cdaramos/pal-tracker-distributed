@@ -21,7 +21,7 @@ namespace Timesheets
             _logger = logger;
             _accessTokenFn = accessTokenFn;
         }
-
+         
 
         public async Task<ProjectInfo> Get(long projectId) =>
             await new GetProjectCommand(DoGet, DoGetFromCache, projectId).ExecuteAsync();
