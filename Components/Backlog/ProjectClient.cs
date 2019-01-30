@@ -27,7 +27,11 @@ namespace Backlog
 
         private async Task<ProjectInfo> DoGet(long projectId)
         {
+            var token = await _accessTokenFn();
+
             _client.DefaultRequestHeaders.Accept.Clear();
+            _client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+
             var streamTask = _client.GetStreamAsync($"project?projectId={projectId}");
 
             _logger.LogInformation($"Attempting to fetch projectId: {projectId}");

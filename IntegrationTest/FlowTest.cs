@@ -43,7 +43,7 @@ namespace IntegrationTest
                 .Database("tracker_backlog_dotnet_test")
                 .SetEnvironmentVariable("REGISTRATION_SERVER_ENDPOINT", _registrationServer.Url())
                 .SetEnvironmentVariable("EUREKA__CLIENT__SHOULDFETCHREGISTRY", "false")
-                .SetEnvironmentVariable("DISABLE_AUTH", "true")
+                .SetEnvironmentVariable("DISABLE_AUTH", "true") 
                 .Build();
 
             _timesheetsServer = TestAppServerBuilder()
